@@ -30,8 +30,6 @@ const addSong = e => {
 
     //Adds song into song list
     songList.appendChild(li);
-    
-
 }
 
 //Function to remove a song (when event listener is triggered)
@@ -47,6 +45,26 @@ const removeSong = e => {
 
 //Function to filter through songs (when event listener is triggered)
 const filterSongs = e => {
+    //convert keystrokes to lowercase
+    let text = e.target.value.toLowerCase();
+
+    //gets all songs in the songList
+    let songs = songList.getElementsByTagName('li');
+
+    //convert HTML collection to an array
+    Array.from(songs).forEach(function(song){
+        let songName = song.firstChild.textContent;
+
+        //compare the input in the search bar to all song names in the songList
+        //passes the input through the .indexOf() function to see if any of the indices of the songName contains the input
+        if(songName.toLowerCase().indexOf(text) != -1){ //if there's no match between the songName and the text (user input), it will equal -1
+            song.style.display = 'block'; //this will make corresponding matches show
+
+        } else {
+            song.style.display = 'none'; //hides the song if it's not a match
+        }
+  
+    });
 
 }
 
@@ -57,5 +75,5 @@ form.addEventListener('submit', addSong);
 songList.addEventListener('click', removeSong);
 
 //Filter Event
-songList.addEventListener('keyup', filterSongs);
+filter.addEventListener('keyup', filterSongs);
 
