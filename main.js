@@ -1,7 +1,8 @@
 const form = document.getElementById('addForm');
 const songList = document.getElementById('songs');
+const filter = document.getElementById('filter');
 
-//Add Song
+//Function to add a song (when event listener is triggered)
 const addSong = e => {
     e.preventDefault();
 
@@ -33,6 +34,7 @@ const addSong = e => {
 
 }
 
+//Function to remove a song (when event listener is triggered)
 const removeSong = e => {
     //Makes sure this function only runs when the "delete" button is clicked, not the rest of the list
     if(e.target.classList.contains('delete')){ //Focuses on the delete buttons by targeting one of its classes
@@ -43,10 +45,17 @@ const removeSong = e => {
     }
 }
 
+//Function to filter through songs (when event listener is triggered)
+const filterSongs = e => {
+
+}
+
 //Form Submit Event
 form.addEventListener('submit', addSong);
 
 //Delete Event
 songList.addEventListener('click', removeSong);
 
+//Filter Event
+songList.addEventListener('keyup', filterSongs);
 
